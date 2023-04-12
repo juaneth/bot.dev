@@ -17,6 +17,12 @@ function createWindow() {
         title: "BotDev",
         backgroundColor: "#FFF",
         autoHideMenuBar: true,
+        titleBarStyle: 'hidden',
+        titleBarOverlay: {
+            color: '#292727',
+            symbolColor: '#FFF',
+            height: 32
+        }
     });
 
     // Open the DevTools.
