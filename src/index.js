@@ -22,7 +22,11 @@ function createWindow() {
             color: '#292727',
             symbolColor: '#FFF',
             height: 32
-        }
+        },
+        webPreferences: {
+            nodeIntegration: true,
+            contextIsolation: false
+        },
     });
 
     // Open the DevTools.
