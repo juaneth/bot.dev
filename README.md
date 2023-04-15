@@ -3,9 +3,7 @@
 [![Discord Link](https://img.shields.io/github/license/juaneth/BotDev?color=%23FFF&style=for-the-badge)](https://github.com/juaneth/BotDev)
 [![Discord Link](https://img.shields.io/github/commit-activity/m/juaneth/BotDev?color=%23FFF&logo=github&style=for-the-badge)](https://github.com/juaneth/BotDev)
 
-Discord Bot Manager built with React, Electron and DaisyUI
-
-Simple atm, more features to come
+Desktop app to manage Discord.js bots built with React, Electron and DaisyUI
 
 ## Dev
 <b>Firstly</b>, ensure you have node.js latest version installed, then clone repo and run `npm i` to install dependancies
