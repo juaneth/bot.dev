@@ -11,7 +11,7 @@ const Home = () => {
         <div className="divider"></div>
 
         <div className="flex flex-row space-x-3">
-          {/*
+          {/* !! Resource Monitor For Later Version !!
            <div className="btn bg-base-100 text-shadow-white">Resource Monitor</div>
 
             <div className="divider divider-horizontal"></div>

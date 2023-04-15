@@ -15,6 +15,7 @@ function createWindow() {
         width: 1200,
         height: 720,
         title: "BotDev",
+        icon: path.join(__dirname, 'public', 'icon.png'),
         backgroundColor: "#FFF",
         autoHideMenuBar: true,
         titleBarStyle: 'hidden',

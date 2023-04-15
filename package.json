@@ -8,10 +8,9 @@
     "scripts": {
         "start": "npm run build && npm run electron:start",
         "dev": "concurrently -k \"vite\" \"npm run electron:dev\"",
-        "build": "vite build",
+        "build": "vite build && electron-forge make",
         "preview": "vite preview",
         "electron:dev": "cross-env IS_DEV=true electron-forge start",
-        "electron:build": "electron-forge make",
         "electron:package": "electron-forge package"
     },
     "dependencies": {
