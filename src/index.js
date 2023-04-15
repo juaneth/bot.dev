@@ -1,7 +1,6 @@
 // app/index.js
 const path = require('path');
 const { app, BrowserWindow } = require('electron');
-const { transformWithEsbuild } = require('vite');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
