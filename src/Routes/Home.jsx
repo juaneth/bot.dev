@@ -23,7 +23,7 @@ const Home = () => {
 
           <div className="divider divider-horizontal"></div>
 
-          <div className="btn bg-[#5865F2] text-shadow-black" onClick={() => {
+          <div className="btn bg-[#5865F2] hover:bg-[#4c58d3] text-shadow-black" onClick={() => {
             shell.openExternal("https://discord.gg/yNwHH38tmm")
 
             document.getElementById("discordToast").classList.remove("opacity-0")
