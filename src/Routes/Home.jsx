@@ -5,7 +5,7 @@ const Home = () => {
     <div className="content">
       <h1 className="text-2xl mb-5 text-shadow-white">Home</h1>
 
-      <div className='bg-secondary p-4 mt-3 rounded-lg space-y-2'>
+      <div className='bg-secondary p-4 rounded-lg space-y-2'>
         <h1 className="text-lg">Quick Actions</h1>
 
         <div className="divider"></div>
@@ -38,7 +38,7 @@ const Home = () => {
         <div className="alert px-5 alert-info">
           <div>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-white text-shadow-white flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span className="text-shadow-white text-white">Discord Server Joined</span>
+            <span className="text-shadow-white text-white">Discord Invite Opened</span>
           </div>
         </div>
       </div>
