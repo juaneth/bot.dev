@@ -7,9 +7,19 @@ export const AddNewBot = (name, path, token) => {
         throw new Error('Failed: Name Exists Already');
     }
 
-    storage.setItem(`bots.${name}`, JSON.stringify({
-        path: path,
-    }))
+    if (!storage.getItem(`bots`)) {
+        storage.setItem(`bots`, JSON.stringify([]))
+    }
+
+    let bots = JSON.parse(window.localStorage.getItem('bots'))
+
+    bots.push(JSON.parse(
+        `"${name}": {
+            path: "${path}"
+        }`
+    ))
+
+    storage.setItem(`bots`, bots)
 
     secureLocalStorage.setItem(`${name}`, token);
 

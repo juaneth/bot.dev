@@ -1,6 +1,10 @@
 import { AddNewBot, RemoveBot } from "../Store";
 
 const Bots = () => {
+    let bots = JSON.parse(window.localStorage.getItem('bots'))
+
+    console.log(bots)
+
     return (
         <div className="content">
             <h1 className="text-2xl mb-5 text-shadow-white">Bots</h1>
