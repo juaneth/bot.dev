@@ -6,7 +6,12 @@
 [![Discord Link](https://img.shields.io/github/commit-activity/m/juaneth/BotDev?color=%23FFF&logo=github&style=for-the-badge)](https://github.com/juaneth/BotDev)
 [![Discord Link](https://img.shields.io/github/v/release/juaneth/BotDev?color=%23FFF&label=Latest%20Release&logo=github&style=for-the-badge)](https://github.com/juaneth/BotDev)
 
-## Dev
-<b>Firstly</b>, ensure you have node.js latest version installed, then clone repo and run `npm i` to install dependancies
+# Dev
+<b>Firstly</b>, ensure you have [Node.js](https://nodejs.org/en) v19.9.0 or higher, Yarn (to install: `npm i -g yarn`) and [Git](https://git-scm.com/) installed. Clone the code and install dependencies by running: 
+```
+git clone https://github.com/juaneth/BotDev.git BotDev
+cd BotDev
+npm run i
+```
 
-To try, run `npm run dev` or to build run `npm run build` + `npm run electron:build`
+To open run `npm run dev` or to build to an executable run `npm run build`
