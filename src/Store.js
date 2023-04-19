@@ -2,40 +2,48 @@ const storage = window.localStorage
 
 import secureLocalStorage from "react-secure-storage";
 
-export const AddNewBot = (name, path, token) => {
-    if (storage.getItem(`bots.${name}`)) {
-        throw new Error('Failed: Name Exists Already');
-    }
-
+export const AddNewBot = (botName, path, token) => {
     if (!storage.getItem(`bots`)) {
         storage.setItem(`bots`, JSON.stringify([]))
     }
 
     let bots = JSON.parse(window.localStorage.getItem('bots'))
 
-    bots.push(JSON.parse(
-        `"${name}": {
-            path: "${path}"
-        }`
-    ))
+    bots.forEach(function(item, index) {
+        console.log(bots)
 
-    storage.setItem(`bots`, bots)
+        if (item.name == botName) {
+            throw new Error('Failed: Name Exists Already');
+        }
 
-    secureLocalStorage.setItem(`${name}`, token);
+    });
 
-    return `Success: Bot Added with name: "${name}", path: "${path}"`
+    bots.push({
+        name: botName,
+        path: path
+    })
+
+    storage.setItem(`bots`, JSON.stringify(bots))
+
+    secureLocalStorage.setItem(`${botName}`, token);
+
+    return `Success: Bot Added with name: "${botName}", path: "${path}"`
 }
 
-export const RemoveBot = (name) => {
-    if (!storage.getItem(`bots.${name}`)) {
-        throw new Error('Failed: Name Doesnt Exist');
-    }
+export const RemoveBot = (botName) => {
+    let bots = JSON.parse(window.localStorage.getItem('bots'))
 
-    storage.removeItem(`bots.${name}`)
+    bots.forEach(function(item, index) {
+        if (item.name == botName) {
+            bots.splice(index, 1);
 
-    secureLocalStorage.removeItem(`${name}`)
+            secureLocalStorage.removeItem(`${botName}`)
 
-    return `Success: Bot Removed with name: "${name}"`
+            storage.setItem(`bots`, JSON.stringify(bots))
+        }
+    });
+
+    return `Success: Bot Removed with name: "${botName}"`
 }
 
 export const ManageBot = (name, action, data) => {}

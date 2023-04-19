@@ -1,9 +1,11 @@
 import { AddNewBot, RemoveBot } from "../Store";
+import React, { useState } from 'react';
+
+import { Link } from "react-router-dom";
+import { ToastElement, activateToast } from '../Components/Toast';
 
 const Bots = () => {
-    let bots = JSON.parse(window.localStorage.getItem('bots'))
-
-    console.log(bots)
+    const [bots, setBots] = useState(JSON.parse(localStorage.getItem('bots')));
 
     return (
         <div className="content">
@@ -11,13 +13,49 @@ const Bots = () => {
 
             <div className="bg-secondary p-4 mt-3 rounded-lg space-x-3">
                 <div onClick={() => {
-                    console.log(AddNewBot("Test", "C:/Users/euanw/TestBot"))
+                    AddNewBot("Test", "C:/Users/euanw/TestBot")
+
+                    setBots(JSON.parse(localStorage.getItem('bots')))
+
+                    activateToast("botAddedToast")
                 }} className="btn bg-base-100 text-shadow-white">Create Test Bot</div>
 
                 <div onClick={() => {
-                    console.log(RemoveBot("Test"))
+                    RemoveBot("Test")
+
+                    setBots(JSON.parse(localStorage.getItem('bots')))
+
+                    activateToast("botRemovedToast")
                 }} className="btn bg-base-100 text-shadow-white">Remove Test Bot</div>
             </div>
+
+            <div className="bg-secondary p-4 mt-3 rounded-lg space-x-3">
+                <table className="table w-full">
+                    {/* head */}
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Path</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {/* row 1 */}
+                        {bots.map((bot, index) => (
+                            <tr key={index}>
+                                <th className="w-12 text-center">{index + 1}</th>
+                                <td>{bot.name}</td>
+                                <td>{bot.path}</td>
+                                <td className="flex justify-end"><Link to={`/bots/${bot.name}`} className="btn btn-info">Manage</Link></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+
+            <ToastElement content={"Bot Added Succesfully"} type={"sucess"} toastId={"botAddedToast"}></ToastElement>
+            <ToastElement content={"Bot Removed Succesfully"} type={"error"} toastId={"botRemovedToast"}></ToastElement>
         </div>
     )
 };

@@ -1,5 +1,7 @@
 const shell = require('electron').shell;
 
+import { ToastElement, activateToast } from '../Components/Toast';
+
 const Home = () => {
   return (
     <div className="content">
@@ -26,22 +28,12 @@ const Home = () => {
           <div className="btn bg-[#5865F2] hover:bg-[#4c58d3] text-shadow-black" onClick={() => {
             shell.openExternal("https://discord.gg/yNwHH38tmm")
 
-            document.getElementById("discordToast").classList.remove("opacity-0")
-            setTimeout(() => {
-              document.getElementById("discordToast").classList.add("opacity-0")
-            }, 10000)
+            activateToast("discordToast")
           }}>Join our Discord</div>
         </div>
       </div>
 
-      <div className="toast transition-all opacity-0" id="discordToast">
-        <div className="alert px-5 alert-info">
-          <div>
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-white text-shadow-white flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <span className="text-shadow-white text-white">Discord Invite Opened</span>
-          </div>
-        </div>
-      </div>
+      <ToastElement content={"Discord Invite Opened"} type={"success"} toastId={"discordToast"}></ToastElement>
     </div>
   )
 };
