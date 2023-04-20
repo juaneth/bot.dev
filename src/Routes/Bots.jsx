@@ -11,25 +11,7 @@ const Bots = () => {
         <div className="content">
             <h1 className="text-2xl mb-5 text-shadow-white">Bots</h1>
 
-            <div className="bg-secondary p-4 mt-3 rounded-lg space-x-3">
-                <div onClick={() => {
-                    AddNewBot("Test", "C:/Users/euanw/TestBot")
-
-                    setBots(JSON.parse(localStorage.getItem('bots')))
-
-                    activateToast("botAddedToast")
-                }} className="btn bg-base-100 text-shadow-white">Create Test Bot</div>
-
-                <div onClick={() => {
-                    RemoveBot("Test")
-
-                    setBots(JSON.parse(localStorage.getItem('bots')))
-
-                    activateToast("botRemovedToast")
-                }} className="btn bg-base-100 text-shadow-white">Remove Test Bot</div>
-            </div>
-
-            <div className="bg-secondary p-4 mt-3 rounded-lg space-x-3">
+            <div className="bg-secondary p-4 rounded-lg">
                 <table className="table w-full">
                     {/* head */}
                     <thead>
@@ -44,7 +26,7 @@ const Bots = () => {
                         {/* row 1 */}
                         {bots.map((bot, index) => (
                             <tr key={index}>
-                                <th className="w-12 text-center">{index + 1}</th>
+                                <th className="w-12 text-end">{index + 1}</th>
                                 <td>{bot.name}</td>
                                 <td>{bot.path}</td>
                                 <td className="flex justify-end"><Link to={`/bots/${bot.name}`} className="btn btn-info">Manage</Link></td>
@@ -52,6 +34,26 @@ const Bots = () => {
                         ))}
                     </tbody>
                 </table>
+
+                <div className="divider my-2"></div>
+
+                <div className="bg-secondary rounded-lg space-x-3">
+                    <div onClick={() => {
+                        AddNewBot("Test", "C:/Users/euanw/TestBot")
+
+                        setBots(JSON.parse(localStorage.getItem('bots')))
+
+                        activateToast("botAddedToast")
+                    }} className="btn bg-base-100 text-shadow-white">New Bot</div>
+
+                    <div onClick={() => {
+                        RemoveBot("Test")
+
+                        setBots(JSON.parse(localStorage.getItem('bots')))
+
+                        activateToast("botRemovedToast")
+                    }} className="btn bg-base-100 text-shadow-white">Import Bot</div>
+                </div>
             </div>
 
             <ToastElement content={"Bot Added Succesfully"} type={"sucess"} toastId={"botAddedToast"}></ToastElement>
