@@ -1,4 +1,4 @@
-import { AddNewBot, RemoveBot } from "../Store";
+import * as Store from "../Store";
 import React, { useState } from 'react';
 
 import { Link } from "react-router-dom";
@@ -39,7 +39,7 @@ const Bots = () => {
 
                 <div className="bg-secondary rounded-lg space-x-3">
                     <div onClick={() => {
-                        AddNewBot("Test", "C:/Users/euanw/TestBot")
+                        Store.AddNewBot("Test", "C:/Users/euanw/TestBot", "MTA5NjU4OTA4NDYyNzA1MDU5Nw.Gw0fx9.RxXa1ZKQLJCyprFZ6qXBNb-ycl-Qfd4wxvAjiQ")
 
                         setBots(JSON.parse(localStorage.getItem('bots')))
 
@@ -47,7 +47,7 @@ const Bots = () => {
                     }} className="btn bg-base-100 text-shadow-white">New Bot</div>
 
                     <div onClick={() => {
-                        RemoveBot("Test")
+                        Store.RemoveBot("Test")
 
                         setBots(JSON.parse(localStorage.getItem('bots')))
 

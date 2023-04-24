@@ -46,4 +46,4 @@ export const RemoveBot = (botName) => {
     return `Success: Bot Removed with name: "${botName}"`
 }
 
-export const ManageBot = (name, action, data) => {}
+export const ManageBot = (botName, action, data) => {}

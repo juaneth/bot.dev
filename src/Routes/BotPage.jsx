@@ -2,7 +2,8 @@ import { useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 
 import { ManageBot } from "../Store";
-import { ToastElement, activateToast } from '../Components/Toast';
+
+import * as Manager from "../Manager"
 
 const BotPage = () => {
     const [botInfo, setBotInfo] = useState(0);
@@ -26,16 +27,16 @@ const BotPage = () => {
 
             <div className="bg-secondary rounded-lg p-4 space-x-3">
                 <div onClick={() => {
-
+                    Manager.startBot(botInfo.name)
                 }} className="btn bg-success hover:bg-success/75 text-shadow-white">Start</div>
 
                 <div onClick={() => {
-
+                    Manager.stopBot(botInfo.name)
                 }} className="btn bg-info hover:bg-info/75 text-shadow-white">Edit</div>
 
-                <div className="divider divider-horizontal"></div>
-
-
+                <div onClick={() => {
+                    Manager.stopBot(botInfo.name)
+                }} className="btn bg-info hover:bg-info/75 text-shadow-white">Delete bot</div>
             </div>
         </div>
     );
