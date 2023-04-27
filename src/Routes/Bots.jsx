@@ -39,7 +39,7 @@ const Bots = () => {
 
                 <div className="bg-secondary rounded-lg space-x-3">
                     <div onClick={() => {
-                        Store.AddNewBot("Test", "C:/Users/euanw/TestBot", "MTA5NjU4OTA4NDYyNzA1MDU5Nw.Gw0fx9.RxXa1ZKQLJCyprFZ6qXBNb-ycl-Qfd4wxvAjiQ")
+                        Store.AddNewBot("Test", "C:/Users/euanw/TestBot", "MTA5NjU4OTA4NDYyNzA1MDU5Nw.GCae0Q.3vBjCAZC_4I2jGwOFS5DFzoBi-d8NDeqcmu4Fk")
 
                         setBots(JSON.parse(localStorage.getItem('bots')))
 

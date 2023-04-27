@@ -4,7 +4,7 @@ const { exec } = require("child_process");
 
 import secureLocalStorage from "react-secure-storage";
 
-export const startBot = (botName, setTerminal) => {
+export const startBot = (botName, terminal, setTerminal) => {
     let bots = JSON.parse(window.localStorage.getItem('bots'))
 
     bots.forEach(function(item, index) {
@@ -16,7 +16,15 @@ export const startBot = (botName, setTerminal) => {
             });
 
             bot.stdout.on('data', function(data) {
+                console.log(`Terminal Push ||| ${data}`)
+                setTerminal([
+                    ...terminal,
+                    data
+                ])
+            });
 
+            bot.stderr.on('data', function(data) {
+                console.log('stderr: ' + data.toString());
             });
         }
     });

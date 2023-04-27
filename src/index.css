@@ -1,9 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Unbounded");
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 body {
     font-family: "Unbounded";
+}
+
+code {
+    font-family: 'Roboto Mono', monospace;
 }
 
 .drag {
