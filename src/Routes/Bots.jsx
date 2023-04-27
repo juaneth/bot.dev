@@ -7,6 +7,8 @@ import { ToastElement, activateToast } from '../Components/Toast';
 const Bots = () => {
     const [bots, setBots] = useState(JSON.parse(localStorage.getItem('bots')));
 
+    require("dotenv").config()
+
     return (
         <div className="content">
             <h1 className="text-2xl mb-5 text-shadow-white">Bots</h1>
@@ -39,7 +41,7 @@ const Bots = () => {
 
                 <div className="bg-secondary rounded-lg space-x-3">
                     <div onClick={() => {
-                        Store.AddNewBot("Test", "C:/Users/euanw/TestBot", "MTA5NjU4OTA4NDYyNzA1MDU5Nw.GCae0Q.3vBjCAZC_4I2jGwOFS5DFzoBi-d8NDeqcmu4Fk")
+                        Store.AddNewBot("Test", "C:/Users/euanw/TestBot", process.env.TEST_BOT_TOKEN)
 
                         setBots(JSON.parse(localStorage.getItem('bots')))
 
