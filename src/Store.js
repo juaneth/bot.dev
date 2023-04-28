@@ -37,7 +37,7 @@ export const RemoveBot = (botName) => {
         if (item.name == botName) {
             bots.splice(index, 1);
 
-            secureLocalStorage.removeItem(`${botName}`)
+            secureLocalStorage.removeItem(botName)
 
             storage.setItem(`bots`, JSON.stringify(bots))
         }

@@ -1,6 +1,7 @@
 import * as Store from "./Store";
 
-const { exec } = require("child_process");
+const pm2 = require('pm2')
+const path = require('node:path')
 
 import secureLocalStorage from "react-secure-storage";
 
@@ -9,21 +10,32 @@ export const startBot = (botName, terminal, setTerminal) => {
 
     bots.forEach(function(item, index) {
         if (item.name == botName) {
-            let bot = exec(`npx cross-env DISCORD_TOKEN=\"${secureLocalStorage.getItem(botName)}\" node index.js`, {
-                cwd: item.path,
-            });
+            pm2.connect(function(err) {
+                if (err) {
+                    console.error(err)
+                }
 
-            bot.stdout.on('data', function(data) {
-                console.log(`Terminal Push ||| ${data}`)
-                setTerminal([
-                    ...terminal,
-                    data
-                ])
-            });
+                let bot = pm2.start({
+                    script: 'index.js',
+                    name: item.name,
+                    cwd: item.path,
+                    env: {
+                        "DISCORD_TOKEN": secureLocalStorage.getItem(item.name)
+                    },
 
-            bot.stderr.on('data', function(data) {
-                console.log('stderr: ' + data.toString());
-            });
+                    output: "/dev/stdout",
+                    error: "/dev/stderr",
+                })
+
+                pm2.launchBus(function(err, pm2_bus) {
+                    pm2_bus.on('log:out', function(packet) {
+                        setTerminal([
+                            ...terminal,
+                            packet.data
+                        ])
+                    })
+                })
+            })
         }
     });
 }
