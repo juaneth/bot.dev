@@ -2,9 +2,9 @@
 ### Desktop app to manage Discord.js bots built with React, Electron and DaisyUI
 
 [![Discord Link](https://img.shields.io/badge/-Server-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/yNwHH38tmm)
-[![Discord Link](https://img.shields.io/github/license/juaneth/BotDev?color=%23FFF&style=for-the-badge)](https://github.com/juaneth/BotDev)
-[![Discord Link](https://img.shields.io/github/commit-activity/m/juaneth/BotDev?color=%23FFF&logo=github&style=for-the-badge)](https://github.com/juaneth/BotDev)
-[![Discord Link](https://img.shields.io/github/v/release/juaneth/BotDev?color=%23FFF&label=Latest%20Release&logo=github&style=for-the-badge)](https://github.com/juaneth/BotDev)
+[![Discord Link](https://img.shields.io/github/license/juaneth/bot.dev?color=%23FFF&style=for-the-badge)](https://github.com/juaneth/bot.dv)
+[![Discord Link](https://img.shields.io/github/commit-activity/m/juaneth/bot.dev?color=%23FFF&logo=github&style=for-the-badge)](https://github.com/juaneth/bot.dev)
+[![Discord Link](https://img.shields.io/github/v/release/juaneth/bot.dev?color=%23FFF&label=Latest%20Release&logo=github&style=for-the-badge)](https://github.com/juaneth/bot.dev)
 
 ![Image 1](https://media.discordapp.net/attachments/1096576816854085783/1101497648835481680/image.png)
 
