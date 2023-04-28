@@ -25,15 +25,15 @@ const Bots = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* row 1 */}
-                        {bots.map((bot, index) => (
-                            <tr key={index}>
-                                <th className="w-12 text-end">{index + 1}</th>
-                                <td>{bot.name}</td>
-                                <td>{bot.path}</td>
-                                <td className="flex justify-end"><Link to={`/bots/${bot.name}`} className="btn btn-info">Manage</Link></td>
-                            </tr>
-                        ))}
+                        {bots &&
+                            bots.map((bot, index) => (
+                                <tr key={index}>
+                                    <th className="w-12 text-end">{index + 1}</th>
+                                    <td>{bot.name}</td>
+                                    <td>{bot.path}</td>
+                                    <td className="flex justify-end"><Link to={`/bots/${bot.name}`} className="btn btn-info">Manage</Link></td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
 

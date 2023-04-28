@@ -27,7 +27,7 @@ const Layout = () => {
           </ul>
         </div>
 
-        <a className="btn btn-ghost normal-case text-xl text-shadow-white">BotDev</a>
+        <a className="btn btn-ghost normal-case text-xl text-shadow-white">bot.dev</a>
 
         <p className="opacity-50">v0.0.1</p>
 

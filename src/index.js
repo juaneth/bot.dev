@@ -14,7 +14,7 @@ function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 1200,
         height: 720,
-        title: "BotDev",
+        title: "bot.dev",
         icon: path.join(__dirname, 'public', 'icon.png'),
         backgroundColor: "#FFF",
         autoHideMenuBar: true,

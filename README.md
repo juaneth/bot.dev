@@ -1,4 +1,4 @@
-# BotDev
+# bot.dev
 ### Desktop app to manage Discord.js bots built with React, Electron and DaisyUI
 
 [![Discord Link](https://img.shields.io/badge/-Server-5865F2?logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/yNwHH38tmm)

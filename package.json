@@ -1,5 +1,5 @@
 {
-    "name": "botdev",
+    "name": "bot.dev",
     "main": "src/index.js",
     "author": "juaneth",
     "description": "Discord Bot Management",
