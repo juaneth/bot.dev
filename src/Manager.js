@@ -8,8 +8,6 @@ export const startBot = (botName, terminal, setTerminal) => {
     let bots = JSON.parse(window.localStorage.getItem('bots'))
 
     bots.forEach(function(item, index) {
-        console.log(item)
-
         if (item.name == botName) {
             let bot = exec(`npx cross-env DISCORD_TOKEN=\"${secureLocalStorage.getItem(botName)}\" node index.js`, {
                 cwd: item.path,

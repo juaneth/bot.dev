@@ -55,7 +55,7 @@ const BotPage = () => {
 
             <div id="terminal" className="transition-all bg-black rounded-lg mockup-code transition-all opacity-0">
                 {terminal.map((data, index) => (
-                    <pre key={index} data-prefix=">">
+                    <pre key={index} data-prefix={index + 1}>
                         <code>{data}</code>
                     </pre>
                 ))}
