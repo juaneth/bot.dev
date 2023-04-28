@@ -6,9 +6,9 @@
 [![Discord Link](https://img.shields.io/github/commit-activity/m/juaneth/BotDev?color=%23FFF&logo=github&style=for-the-badge)](https://github.com/juaneth/BotDev)
 [![Discord Link](https://img.shields.io/github/v/release/juaneth/BotDev?color=%23FFF&label=Latest%20Release&logo=github&style=for-the-badge)](https://github.com/juaneth/BotDev)
 
-![Image 1](https://media.discordapp.net/attachments/1096576816854085783/1096588525350174720/image.png)
+![Image 1](https://media.discordapp.net/attachments/1096576816854085783/1101497648835481680/image.png)
 
-![Image 2](https://media.discordapp.net/attachments/1096576816854085783/1096588566185918534/image.png)
+![Image 2](https://media.discordapp.net/attachments/1096576816854085783/1101497998225190912/image.png)
 
 
 # Developer
