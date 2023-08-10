@@ -14,7 +14,7 @@ const Layout = () => {
   let navigate = useNavigate();
 
   return (
-    <>
+    <div className="h-screen flex flex-col">
       <div className="navbar bg-secondary drag transition">
         <div className="dropdown dropdown-hover no-drag">
           <label tabIndex={0} className="btn btn-ghost">
@@ -39,7 +39,7 @@ const Layout = () => {
       </div>
 
       <Outlet />
-    </>
+    </div>
   );
 };
 

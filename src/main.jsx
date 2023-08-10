@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
-import App from "./App";
+import Layout from "./Layout";
 import "./index.css";
 
 import NotFound from "./Routes/NotFound";
@@ -16,7 +16,7 @@ import Settings from "./Routes/Settings";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <HashRouter>
     <Routes>
-      <Route path="/" element={<App />}>
+      <Route path="/" element={<Layout />}>
         <Route path='*' element={<NotFound />} />
 
         <Route index element={<Home />} />
