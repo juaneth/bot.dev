@@ -113,5 +113,7 @@ export const stopBot = (botName, terminal, setTerminal) => {
                 resolve(false)
             })
         })
+
+        pm2.disconnect()
     });
 }

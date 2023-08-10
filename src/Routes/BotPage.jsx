@@ -5,7 +5,7 @@ import { ManageBot } from "../Store";
 import * as Manager from "../Manager"
 
 const BotPage = () => {
-    const [botInfo, setBotInfo] = useState(0);
+    const [botInfo, setBotInfo] = useState(Array);
     const [isOnline, setIsOnline] = useState(Boolean);
     const [terminal, setTerminal] = useState([]);
 
@@ -20,7 +20,7 @@ const BotPage = () => {
     }, []);
 
     return (
-        <div className="content flex flex-col grow">
+        <div className="content flex flex-col grow max-h-full">
             <div className="mb-5">
                 <h1 className="text-2xl text-shadow-white">{botInfo.name}</h1>
                 <p className="text-lg text-white/60">{botInfo.path}</p>
@@ -36,6 +36,7 @@ const BotPage = () => {
                 </div> : <div onClick={() => {
                     Manager.startBot(botInfo.name, terminal, setTerminal).then((response, err) => {
                         setIsOnline(response)
+                        Manager.connectBus(botInfo.name, terminal, setTerminal)
                     })
                 }} className="btn text-shadow-white bg-success hover:bg-success/75">
                     Start
@@ -54,7 +55,7 @@ const BotPage = () => {
             </div>
 
             {isOnline &&
-                <div id="terminal" className="transition-all grow bg-black rounded-lg mockup-code">
+                <div id="terminal" className="transition-all bg-black rounded-lg mockup-code max-h-max overflow-y-auto">
 
                     {terminal.map((data, index) => (
                         <pre key={index} data-prefix={index + 1}>
