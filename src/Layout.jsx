@@ -15,7 +15,7 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="navbar bg-secondary drag transition">
+      <div className="navbar h-16 bg-secondary drag transition">
         <div className="dropdown dropdown-hover no-drag">
           <label tabIndex={0} className="btn btn-ghost">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>

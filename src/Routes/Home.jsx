@@ -33,7 +33,7 @@ const Home = () => {
         </div>
       </div>
 
-      <ToastElement content={"Discord Invite Opened"} type={"success"} toastId={"discordToast"}></ToastElement>
+      <ToastElement content={"Discord Invite Opened"} type={"info"} toastId={"discordToast"}></ToastElement>
     </div>
   )
 };

@@ -20,7 +20,7 @@ const BotPage = () => {
     }, []);
 
     return (
-        <div className="content flex flex-col grow max-h-full">
+        <div className="content flex flex-col grow max-h-[calc(100vh_-_4rem)]">
             <div className="mb-5">
                 <h1 className="text-2xl text-shadow-white">{botInfo.name}</h1>
                 <p className="text-lg text-white/60">{botInfo.path}</p>
