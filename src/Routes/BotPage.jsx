@@ -1,6 +1,8 @@
 import { useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
-import { ManageBot } from "../Store";
+import * as Bots from "../Store";
+
+import { RemoveBot } from '../Components/BotModals/RemoveBotModal.jsx'
 
 import * as Manager from "../Manager"
 
@@ -21,6 +23,8 @@ const BotPage = () => {
 
     return (
         <div className="content flex flex-col grow max-h-[calc(100vh_-_4rem)]">
+            <RemoveBot htmlFor={"removeBot"} botInfo={botInfo}></RemoveBot>
+
             <div className="mb-5">
                 <h1 className="text-2xl text-shadow-white">{botInfo.name}</h1>
                 <p className="text-lg text-white/60">{botInfo.path}</p>
@@ -49,9 +53,7 @@ const BotPage = () => {
 
                 <div className="divider divider-horizontal"></div>
 
-                <div onClick={() => {
-
-                }} className="btn bg-dark/75 hover:bg-error text-shadow-white">Delete bot</div>
+                <label htmlFor="removeBot" className="btn bg-dark/75 hover:bg-error text-shadow-white">Remove bot</label>
             </div>
 
             {isOnline &&

@@ -2,7 +2,11 @@ const shell = require('electron').shell;
 
 import { ToastElement, activateToast } from '../Components/Toast';
 
+import React, { useState } from 'react';
+
 const Home = () => {
+  const [bots, setBots] = useState(JSON.parse(localStorage.getItem('bots')));
+
   return (
     <div className="content">
       <h1 className="text-2xl mb-5 text-shadow-white">Home</h1>
