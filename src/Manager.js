@@ -96,7 +96,7 @@ export const connectBus = (botName, terminal, setTerminal) => {
     });
 }
 
-export const stopBot = (botName, terminal, setTerminal) => {
+export const stopBot = (botName) => {
     return new Promise(function(resolve, reject) {
         let bots = JSON.parse(window.localStorage.getItem('bots'))
 

@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import * as Store from "../../Store";
 import { useNavigate } from "react-router-dom";
 
+import * as Manager from "../../Manager"
+
 
 export const RemoveBot = ({ htmlFor, botInfo }) => {
     const botName = useRef(0);
@@ -25,13 +27,12 @@ export const RemoveBot = ({ htmlFor, botInfo }) => {
                     <div className="modal-action">
                         <label htmlFor={htmlFor} className="btn">Cancel</label>
                         <label to={"/bots"} onClick={() => {
-                            console.log(botName.current.value, botInfo.name)
-
                             if (botName.current.value == botInfo.name) {
-                                Store.RemoveBot(botInfo.name)
-
-                                navigate("/bots")
-                            } else console.log("failed")
+                                Manager.stopBot(botInfo.name).then(() => {
+                                    Store.RemoveBot(botInfo.name)
+                                    navigate("/bots")
+                                })
+                            } else console.log("failed, not the same name")
                         }} htmlFor={htmlFor} className="btn bg-error/80 text-shadow-white">Remove Bot</label>
                     </div>
                 </div>
