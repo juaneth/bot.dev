@@ -1,8 +1,7 @@
 import React, { useRef } from 'react';
 import * as Store from "../../Store";
-import { useNavigate } from "react-router-dom";
-
 import * as Manager from "../../Manager"
+import { useNavigate } from "react-router-dom";
 
 
 export const RemoveBot = ({ htmlFor, botInfo }) => {
