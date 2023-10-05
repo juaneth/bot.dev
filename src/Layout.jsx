@@ -29,7 +29,7 @@ const Layout = () => {
 
         <a className="btn btn-ghost normal-case text-xl text-shadow-white">bot.dev</a>
 
-        <p className="opacity-50">v0.0.1</p>
+        <p className="opacity-50">v0.0.2</p>
 
         {route !== "/" &&
           <div onClick={() => navigate(-1)} className="btn btn-ghost ml-5 no-drag">

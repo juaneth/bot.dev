@@ -46,10 +46,23 @@ const BotPage = () => {
                     Start
                 </div>}
 
+                <div onClick={() => { }} className="btn bg-info hover:bg-info/75 text-shadow-white">Edit</div>
 
                 <div onClick={() => {
+                    const { exec } = require('child_process');
+                    const openExplorer = require('open-file-explorer');
 
-                }} className="btn bg-info hover:bg-info/75 text-shadow-white">Edit</div>
+                    exec(`code ${botInfo.path}`, (err, stdout, stderr) => {
+                        if (err) {
+                            // node couldn't execute the command
+                            openExplorer(botinfo.path, err => {
+                                if (err) {
+                                    console.log(err);
+                                }
+                            })
+                        }
+                    });
+                }} className="btn bg-dark hover:bg-dark/75 text-shadow-white">Open</div>
 
                 <div className="divider divider-horizontal"></div>
 

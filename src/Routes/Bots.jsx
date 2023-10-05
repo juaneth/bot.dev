@@ -41,20 +41,11 @@ const Bots = () => {
                 </table>
 
                 <div className="bg-secondary rounded-lg space-x-3">
-                    <label htmlFor="addBot" className="btn bg-base-100 text-shadow-white">New Bot</label>
-
-                    <div onClick={() => {
-                        Store.RemoveBot("Test")
-
-                        setBots(JSON.parse(localStorage.getItem('bots')))
-
-                        activateToast("botRemovedToast")
-                    }} className="btn bg-base-100 text-shadow-white">Import Bot</div>
+                    <label htmlFor="addBot" className="btn bg-base-100 text-shadow-white">Import Bot</label>
                 </div>
             </div>
 
             <ToastElement content={"Bot Added Succesfully"} type={"sucess"} toastId={"botAddedToast"}></ToastElement>
-            <ToastElement content={"Bot Removed Succesfully"} type={"error"} toastId={"botRemovedToast"}></ToastElement>
         </div>
     )
 };

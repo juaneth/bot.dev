@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import * as Store from "../../Store";
+import { activateToast } from '../Toast';
 
 export const AddBot = ({ htmlFor, bots, setBots }) => {
     const botDirectory = useRef(0);
@@ -25,12 +26,39 @@ export const AddBot = ({ htmlFor, bots, setBots }) => {
                     <div className="modal-action">
                         <label htmlFor={htmlFor} className="btn">Cancel</label>
                         <label onClick={() => {
+                            const decompress = require("decompress");
+
+                            if (botDirectory.current.value.endsWith(".zip")) {
+                                decompress(botDirectory.current.value, botName.current.value)
+                                    .then((files) => {
+                                        console.log(files);
+
+                                        alert("Zip File Decompressed!")
+
+                                        botDirectory.current.value == botDirectory.current.value.substr(0 - botDirectory.current.value.lastIndexOf(".zip"))
+
+                                        Store.AddNewBot(botName.current.value, botDirectory.current.value, botToken.current.value)
+
+                                        setBots(JSON.parse(localStorage.getItem('bots')))
+
+                                        document.getElementById('directory').value = ""
+                                        document.getElementById('name').value = ""
+
+                                        return;
+                                    })
+                                    .catch((error) => {
+                                        console.log(error);
+                                    });
+                            }
+
                             Store.AddNewBot(botName.current.value, botDirectory.current.value, botToken.current.value)
 
                             setBots(JSON.parse(localStorage.getItem('bots')))
 
                             document.getElementById('directory').value = ""
                             document.getElementById('name').value = ""
+
+                            activateToast("botAddedToast")
                         }} htmlFor={htmlFor} className="btn bg-info">Add Bot</label>
                     </div>
                 </div>

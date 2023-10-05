@@ -10,8 +10,6 @@ export const AddNewBot = (botName, path, token) => {
     let bots = JSON.parse(window.localStorage.getItem('bots'))
 
     bots.forEach(function(item, index) {
-        console.log(bots)
-
         if (item.name == botName) {
             throw new Error('Failed: Name Exists Already');
         }
@@ -46,4 +44,23 @@ export const RemoveBot = (botName) => {
     return `Success: Bot Removed with name: "${botName}"`
 }
 
-export const ManageBot = (botName, action, data) => {}
+export const ManageBot = (botName, action, data) => {
+    if (!storage.getItem(`bots`)) {
+        storage.setItem(`bots`, JSON.stringify([]))
+    }
+
+    let bots = JSON.parse(window.localStorage.getItem('bots'))
+
+    bots.forEach(function(item, index) {
+        if (item.name == botName) {
+            if (action == "rename") {
+                bots[index].name = data
+
+                storage.setItem(`bots`, JSON.stringify(bots))
+
+                return `Success: Bot "${botName}" renamed to: "${data}"`
+            }
+        }
+
+    });
+}
