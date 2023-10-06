@@ -6,10 +6,6 @@
 [![Discord Link](https://img.shields.io/github/commit-activity/m/juaneth/bot.dev?color=%23FFF&logo=github&style=for-the-badge)](https://github.com/juaneth/bot.dev)
 [![Discord Link](https://img.shields.io/github/v/release/juaneth/bot.dev?color=%23FFF&label=Latest%20Release&logo=github&style=for-the-badge)](https://github.com/juaneth/bot.dev)
 
-![Image 1](https://media.discordapp.net/attachments/1096576816854085783/1101497648835481680/image.png)
-
-![Image 2](https://media.discordapp.net/attachments/1096576816854085783/1101497998225190912/image.png)
-
 
 # Developer
 <b>Firstly</b>, ensure you have [Node.js](https://nodejs.org/en) v19.9.0 or higher, Yarn (to install: `npm i -g yarn`) and [Git](https://git-scm.com/) installed. Clone the code and install dependencies by running: 
