@@ -20,6 +20,7 @@
 git clone https://github.com/juaneth/BotDev.git BotDev
 cd BotDev
 npm run i
+npm i pm2 -g
 ```
 
 To open run `npm run dev` or to build to an executable run `npm run build`
