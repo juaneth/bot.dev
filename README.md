@@ -6,6 +6,7 @@
 [![Discord Link](https://img.shields.io/github/commit-activity/m/juaneth/bot.dev?color=%23FFF&logo=github&style=for-the-badge)](https://github.com/juaneth/bot.dev)
 [![Discord Link](https://img.shields.io/github/v/release/juaneth/bot.dev?color=%23FFF&label=Latest%20Release&logo=github&style=for-the-badge)](https://github.com/juaneth/bot.dev)
 
+# [--> Install Guide <--](https://github.com/juaneth/bot.dev/wiki/Install-and-Setup#install)
 
 # Developer
 <b>Firstly</b>, ensure you have [Node.js](https://nodejs.org/en) v19.9.0 or higher, Yarn (to install: `npm i -g yarn`) and [Git](https://git-scm.com/) installed. Clone the code and install dependencies by running: 
