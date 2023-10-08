@@ -15,14 +15,13 @@ const Layout = () => {
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="navbar h-16 bg-secondary drag transition">
+      <div className="navbar fixed z-50 bg-secondary drag transition shadow-2xl">
         <div className="dropdown dropdown-hover no-drag">
           <label tabIndex={0} className="btn btn-ghost">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h7" /></svg>
           </label>
           <ul tabIndex={0} className="menu menu-compact dropdown-content m-0 shadow bg-accent/50 backdrop-blur-md rounded-box w-48 no-drag">
             <li><Link className="py-3" to={"/"}>Home</Link></li>
-            <li><Link className="py-3" to={"/bots"}>Bots</Link></li>
             <li><Link className="py-3" to={"/settings"}>Settings</Link></li>
           </ul>
         </div>
@@ -37,6 +36,8 @@ const Layout = () => {
           </div>
         }
       </div>
+
+      <div className="min-h-[64px] my-0 py-0"></div>
 
       <Outlet />
     </div>

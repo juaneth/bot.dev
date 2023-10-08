@@ -25,11 +25,11 @@ export const RemoveBot = ({ htmlFor, botInfo }) => {
 
                     <div className="modal-action">
                         <label htmlFor={htmlFor} className="btn">Cancel</label>
-                        <label to={"/bots"} onClick={() => {
+                        <label to={"/"} onClick={() => {
                             if (botName.current.value == botInfo.name) {
                                 Manager.stopBot(botInfo.name).then(() => {
                                     Store.RemoveBot(botInfo.name)
-                                    navigate("/bots")
+                                    navigate(-1)
                                 })
                             } else console.log("failed, not the same name")
                         }} htmlFor={htmlFor} className="btn bg-error/80 text-shadow-white">Remove Bot</label>
