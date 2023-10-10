@@ -31,11 +31,11 @@ const Home = () => {
 
           <label htmlFor="addBot" className="btn bg-base-100 text-shadow-white">Import Bot</label>
 
-          <Link className="btn bg-base-100 text-shadow-white" to={"/settings"}>Settings</Link>
-
           <div className="btn bg-base-100 text-shadow-white" onClick={() => {
             shell.openExternal("https://discord.com/developers/applications")
           }}>Discord Developer Portal</div>
+
+          <Link className="btn bg-base-100 text-shadow-white" to={"/settings"}>Settings</Link>
 
           <div className="divider divider-horizontal"></div>
 
@@ -60,7 +60,7 @@ const Home = () => {
           <table className="table w-full border-separate border-spacing-0.5 table-auto">
             <thead>
               <tr>
-                <th></th>
+                <th className='justify-center text-center'>#</th>
                 <th>Name</th>
                 <th className='grow'>Path</th>
                 <th></th>
@@ -86,17 +86,36 @@ const Home = () => {
 
         <div className="divider"></div>
 
-        <div className="card w-80 bg-base-100">
-          <div className="card-body p-6 space-y-0">
-            <h2 className="card-title text-lg">Install and Setup</h2>
-            <p className='text-sm'>Setup bot.dev for Discord Bots</p>
-            <div className="divider"></div>
-            <div className="card-actions">
-              <button onClick={() => {
-                shell.openExternal("https://github.com/juaneth/bot.dev/wiki/Install-and-Setup")
-              }} className="btn bg-base-100 text-shadow-white">Read on GitHub</button>
+        <div className='gap-4 flex flex-row flex-wrap'>
+          <div className="card bg-base-100">
+            <div className="card-body p-6 space-y-0">
+              <h2 className="card-title text-lg">Install and Setup</h2>
+              <p className='text-sm'>Install and Setup bot.dev desktop app</p>
+              <div className="divider"></div>
+              <div className="card-actions">
+                <button onClick={() => {
+                  shell.openExternal("https://github.com/juaneth/bot.dev/wiki/Install-and-Setup")
+                }} className="btn bg-base-100 text-shadow-white">Read on GitHub</button>
+              </div>
             </div>
           </div>
+          {/* # Tutorial Not Finished Yet
+            <div className="card bg-base-100">
+              <div className="card-body p-6 space-y-0">
+                <h2 className="card-title text-lg">Making a Discord Bot</h2>
+                <p className='text-sm'>Make a discord.js bot and import it into bot.dev</p>
+                <div className="divider"></div>
+                <div className="card-actions">
+                  <button onClick={() => {
+                    shell.openExternal("https://github.com/juaneth/bot.dev/wiki/Making-a-Bot")
+                  }} className="btn bg-base-100 text-shadow-white">Read on GitHub</button>
+                </div>
+              </div>
+          </div>
+          */
+          }
+
+
         </div>
       </div>
 

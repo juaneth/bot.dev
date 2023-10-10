@@ -8,7 +8,7 @@
     },
     "description": "Discord Bot Management",
     "license": "GPL-3.0-or-later",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "scripts": {
         "start": "npm run build && npm run electron:start",
         "dev": "concurrently -k \"vite\" \"npm run electron:dev\"",
@@ -33,9 +33,10 @@
     "devDependencies": {
         "@electron-forge/cli": "^6.1.1",
         "@electron-forge/maker-deb": "^6.0.5",
+        "@electron-forge/maker-dmg": "^6.4.2",
         "@electron-forge/maker-rpm": "^6.0.5",
         "@electron-forge/maker-squirrel": "^6.0.5",
-        "@electron-forge/maker-zip": "^6.0.5",
+        "@electron-forge/maker-zip": "^6.4.2",
         "@types/react": "^18.0.28",
         "@types/react-dom": "^18.0.11",
         "@vitejs/plugin-react": "^3.1.0",

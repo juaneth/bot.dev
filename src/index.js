@@ -9,7 +9,16 @@ if (require('electron-squirrel-startup')) {
 
 const isDev = process.env.IS_DEV === 'true';
 
-require('update-electron-app')()
+const config = require("./config.json")
+
+if (config.autoUpdates == true) {
+    require('update-electron-app')()
+}
+
+if (config.hardwareAcceleration == false) {
+    app.disableHardwareAcceleration()
+    console.log("Hardware Acceleration Disabled")
+}
 
 function createWindow() {
     // Create the browser window.
