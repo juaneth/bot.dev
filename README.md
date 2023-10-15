@@ -25,7 +25,7 @@
 ```
 git clone https://github.com/juaneth/BotDev.git BotDev
 cd BotDev
-npm run i
+npm i
 npm i pm2 -g
 ```
 
