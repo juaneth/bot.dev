@@ -10,6 +10,12 @@ import Home from "./Routes/Home.jsx";
 import BotPage from "./Routes/BotPage";
 import Settings from "./Routes/Settings";
 
+const storage = window.localStorage
+
+if (!storage.getItem(`bots`)) {
+  storage.setItem(`bots`, JSON.stringify([]))
+}
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <HashRouter>

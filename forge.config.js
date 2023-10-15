@@ -8,7 +8,6 @@ module.exports = {
             "authors": "juaneth",
             "config": {
                 "name": "bot.dev",
-                "productName": "bot.dev",
                 "icon": "./src/public/icon.ico",
                 "loadingGif": "./src/public/installing.gif"
             }

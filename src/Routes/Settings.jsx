@@ -2,13 +2,15 @@ import config from "../config.json"
 
 import React, { useRef } from 'react';
 
+const path = require('path')
+
 const fs = require('fs');
 
 const Settings = () => {
     const storage = window.localStorage
 
     const hardwareAccelerationRef = useRef(config.hardwareAcceleration);
-    const autoUpdatesRef = useRef(config.hardwareAcceleration);
+    const autoUpdatesRef = useRef(config.autoUpdates);
 
     return (
         <div className="content">
@@ -31,10 +33,10 @@ const Settings = () => {
                     <div className='bg-secondary rounded-lg space-x-3 flex flex-row'>
                         <h1>Hardware Acceleration</h1>
 
-                        <input onClick={() => {
+                        <input onChange={() => {
                             config.hardwareAcceleration = hardwareAccelerationRef.current.checked;
-                            fs.writeFileSync("./src/config.json", JSON.stringify(config))
-                        }} ref={hardwareAccelerationRef} id="hardwareAcceleration" type="checkbox" defaultChecked={config.hardwareAcceleration} className="toggle toggle-sm" />
+                            fs.writeFileSync(path.join(__dirname.split("\\").slice(0, -1).toString().replaceAll(",", "\\"), 'config.json'), JSON.stringify(config))
+                        }} ref={hardwareAccelerationRef} type="checkbox" defaultChecked={config.hardwareAcceleration} className="toggle toggle-sm" />
                     </div>
 
                     <div className="divider py-0 my-2"></div>
@@ -44,8 +46,8 @@ const Settings = () => {
 
                         <input onChange={() => {
                             config.autoUpdates = autoUpdatesRef.current.checked;
-                            fs.writeFileSync("./src/config.json", JSON.stringify(config))
-                        }} ref={autoUpdatesRef} type="checkbox" className="toggle toggle-sm" />
+                            fs.writeFileSync(path.join(__dirname.split("\\").slice(0, -1).toString().replaceAll(",", "\\"), 'config.json'), JSON.stringify(config))
+                        }} ref={autoUpdatesRef} type="checkbox" defaultChecked={config.autoUpdates} className="toggle toggle-sm" />
                     </div>
 
                     <div className="divider py-0 my-2"></div>
