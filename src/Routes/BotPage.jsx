@@ -2,28 +2,43 @@ import { useParams, Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import * as Bots from "../Store";
 
+import { EditBot } from '../Components/BotModals/EditBot.jsx'
 import { RemoveBot } from '../Components/BotModals/RemoveBotModal.jsx'
+import { Invites } from '../Components/BotModals/Invites.jsx'
 
 import * as Manager from "../Manager"
 
+const storage = window.localStorage
+
 const BotPage = () => {
+    const [bots, setBots] = useState(JSON.parse(localStorage.getItem('bots')));
+
     const [botInfo, setBotInfo] = useState(Array);
     const [isOnline, setIsOnline] = useState(Boolean);
     const [terminal, setTerminal] = useState([]);
 
     let id = useParams().id
+    
 
     useEffect(() => {
-        JSON.parse(localStorage.getItem('bots')).forEach(function (item, index) {
+        JSON.parse(storage.getItem('bots')).forEach(function (item, index) {
             if (item.name == id) {
                 setBotInfo(item)
             }
         });
     }, []);
 
+    try {
+        storage.getItem('defaultCodeEditor')
+    } catch {
+        storage.setItem('defaultCodeEditor', 'code')
+    }
+
     return (
         <div className="content flex flex-col grow max-h-[calc(100vh_-_4rem)]">
+            <EditBot htmlFor={"editBot"} botInfo={botInfo} setBotInfo={setBotInfo}></EditBot>
             <RemoveBot htmlFor={"removeBot"} botInfo={botInfo}></RemoveBot>
+            <Invites htmlFor={"invites"} botInfo={botInfo}></Invites>
 
             <div className="mb-5">
                 <h1 className="text-2xl text-shadow-white">{botInfo.name}</h1>
@@ -46,27 +61,31 @@ const BotPage = () => {
                     Start
                 </div>}
 
-                <div onClick={() => { }} className="btn bg-info hover:bg-info/75 text-shadow-white">Edit</div>
+                <div data-tip={`Command: ${storage.getItem('defaultCodeEditor')} <bot folder>`} className="tooltip">
+                    <div onClick={() => {
+                        const { exec } = require('child_process');
+                        const openExplorer = require('open-file-explorer');
 
-                <div onClick={() => {
-                    const { exec } = require('child_process');
-                    const openExplorer = require('open-file-explorer');
+                        exec(`${storage.getItem('defaultCodeEditor')} ${botInfo.path}`, (err, stdout, stderr) => {
+                            if (err) {
+                                openExplorer(`${botInfo.path}`, err => {
+                                    if (err) {
+                                        console.log(err);
+                                    }
+                                })
+                            }
+                        });
+                    }} className="btn bg-info text-shadow-white hover:bg-info/75">Edit Code</div>
+                </div>
 
-                    exec(`code ${botInfo.path}`, (err, stdout, stderr) => {
-                        if (err) {
-                            // node couldn't execute the command
-                            openExplorer(botinfo.path, err => {
-                                if (err) {
-                                    console.log(err);
-                                }
-                            })
-                        }
-                    });
-                }} className="btn bg-dark hover:bg-dark/75 text-shadow-white">Open</div>
+
+                <label htmlFor="invites" className="btn bg-info text-shadow-white hover:bg-info/75">Invites</label>
 
                 <div className="divider divider-horizontal"></div>
 
-                <label htmlFor="removeBot" className="btn bg-dark/75 hover:bg-error text-shadow-white">Remove bot</label>
+                <label htmlFor="editBot" className="btn bg-base-100 text-shadow-white hover:bg-info/75">Edit bot</label>
+
+                <label htmlFor="removeBot" className="btn bg-base-100 text-shadow-white hover:bg-error/75">Remove bot</label>
             </div>
 
             {isOnline &&

@@ -7,6 +7,7 @@ const shell = require('electron').shell;
 export const AddBot = ({ htmlFor, bots, setBots }) => {
     const botDirectory = useRef(0);
     const botName = useRef(0);
+    const clientID = useRef(0);
     const botToken = useRef(0);
 
     return (
@@ -22,6 +23,8 @@ export const AddBot = ({ htmlFor, bots, setBots }) => {
                         <input id="directory" ref={botDirectory} placeholder="Path to Bot Folder" className="input w-full bg-neutral" type="text" />
 
                         <div className="divider mx-0"></div>
+
+                        <input id="clientID" ref={clientID} placeholder="Application/Client ID" className="input w-full bg-neutral" type="text" />
 
                         <div className='flex flex-row space-x-3'>
                             <input id="token" ref={botToken} placeholder="Bot Token (keep private)" className="input w-full bg-neutral" type="password" />
@@ -49,7 +52,7 @@ export const AddBot = ({ htmlFor, bots, setBots }) => {
 
                                         botDirectory.current.value == botDirectory.current.value.substr(0 - botDirectory.current.value.lastIndexOf(".zip"))
 
-                                        Store.AddNewBot(botName.current.value, botDirectory.current.value, botToken.current.value)
+                                        Store.AddNewBot(botName.current.value, clientID.current.value, botDirectory.current.value, botToken.current.value)
 
                                         setBots(JSON.parse(localStorage.getItem('bots')))
 
@@ -63,15 +66,17 @@ export const AddBot = ({ htmlFor, bots, setBots }) => {
                                     });
                             }
 
-                            Store.AddNewBot(botName.current.value, botDirectory.current.value, botToken.current.value)
+                            Store.AddNewBot(botName.current.value, clientID.current.value, botDirectory.current.value, botToken.current.value)
 
                             setBots(JSON.parse(localStorage.getItem('bots')))
 
                             document.getElementById('directory').value = ""
                             document.getElementById('name').value = ""
+                            document.getElementById('clientID').value = ""
+                            document.getElementById('token').value = ""
 
                             activateToast("botAddedToast")
-                        }} htmlFor={htmlFor} className="btn bg-info">Add Bot</label>
+                        }} htmlFor={htmlFor} className="btn bg-info hover:bg-info/70">Add Bot</label>
                     </div>
                 </div>
             </div>

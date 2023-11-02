@@ -41,3 +41,7 @@ code {
   background: rgba(255, 255, 255, 0.24);
   border-radius: 5px;
 }
+
+.modal {
+  z-index: 40;
+}

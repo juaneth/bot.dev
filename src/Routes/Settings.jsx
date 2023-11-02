@@ -9,6 +9,7 @@ const fs = require('fs');
 const Settings = () => {
     const storage = window.localStorage
 
+    const CodeEditorCommandRef = useRef(storage.getItem('defaultCodeEditor'));
     const hardwareAccelerationRef = useRef(config.hardwareAcceleration);
     const autoUpdatesRef = useRef(config.autoUpdates);
 
@@ -20,9 +21,22 @@ const Settings = () => {
                 <div className='bg-secondary p-5 rounded-lg space-y-5'>
                     <h1 className="text-xl text-shadow-white">Bot Management</h1>
 
-                    <div onClick={() => {
-                        storage.setItem(`bots`, JSON.stringify([]))
-                    }} className="btn bg-error hover:bg-error/75">Clear Bots List</div>
+                    <div className="flex flex-col">
+                        <div className="flex flex-row space-x-5 items-center">
+                            <h1 className="text-lg">Default Code Editor Command: </h1>
+
+                            <input type="text" onChange={() => {
+                                storage.setItem(`defaultCodeEditor`, CodeEditorCommandRef.current.value)
+                            }} ref={CodeEditorCommandRef} defaultValue={storage.getItem('defaultCodeEditor')} placeholder="eg. VSCode = 'code'" className="input h-12 w-64"></input>
+                        </div>
+
+
+                        <div className="divider py-0 my-2"></div>
+
+                        <div onClick={() => {
+                            storage.setItem(`bots`, JSON.stringify([]))
+                        }} className="btn bg-error w-64 hover:bg-error/75">Clear Bots List</div>
+                    </div>
                 </div>
 
                 <div className='bg-secondary p-5 rounded-lg'>

@@ -2,7 +2,7 @@ const storage = window.localStorage
 
 import secureLocalStorage from "react-secure-storage";
 
-export const AddNewBot = (botName, path, token) => {
+export const AddNewBot = (botName, clientID, path, token) => {
     let bots = JSON.parse(window.localStorage.getItem('bots'))
 
     bots.forEach(function(item, index) {
@@ -14,7 +14,9 @@ export const AddNewBot = (botName, path, token) => {
 
     bots.push({
         name: botName,
-        path: path
+        path: path,
+        clientID: clientID,
+        invites: []
     })
 
     storage.setItem(`bots`, JSON.stringify(bots))
@@ -51,6 +53,16 @@ export const ManageBot = (botName, action, data) => {
                 storage.setItem(`bots`, JSON.stringify(bots))
 
                 return `Success: Bot "${botName}" renamed to: "${data}"`
+            }
+
+            if (action == "setClientID") {
+                bots[index].clientID = data
+
+                storage.setItem(`bots`, JSON.stringify(bots))
+
+                console.log(`Success: Set "${botName}".clientID to: "${data}"`)
+
+                return `Success: Set "${botName}".clientID to: "${data}"`
             }
         }
     });
