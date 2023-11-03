@@ -28,10 +28,8 @@ const BotPage = () => {
         });
     }, []);
 
-    try {
-        storage.getItem('defaultCodeEditor')
-    } catch {
-        storage.setItem('defaultCodeEditor', 'code')
+    if (typeof storage.getItem("defaultCodeEditor") == null) {
+        storage.setItem("defaultCodeEditor", "code")
     }
 
     return (

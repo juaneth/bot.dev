@@ -95,8 +95,6 @@ export const Invites = ({ htmlFor, botInfo }) => {
                                         perms: `${permsIntRef.current.value}`
                                     })
 
-                                    setInvites(invitesCache)
-
                                     item.invites = invitesCache
 
                                     bots[index] = item
@@ -104,6 +102,8 @@ export const Invites = ({ htmlFor, botInfo }) => {
                                     storage.setItem(`bots`, JSON.stringify(bots))
 
                                     console.log(`Success: Added invite with link: ${link}, And perms: ${permsIntRef.current.value}`)
+
+                                    window.location.reload()
                                 }
                             });
                         }} className="btn bg-info hover:bg-info/70 text-shadow-white">Create Invite</label>

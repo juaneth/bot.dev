@@ -6,6 +6,7 @@ import secureLocalStorage from "react-secure-storage";
 
 import { useNavigate } from "react-router-dom";
 
+const shell = require('electron').shell;
 
 export const EditBot = ({ htmlFor, botInfo, setBotInfo }) => {
     const botDirectory = useRef(0);
