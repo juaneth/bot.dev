@@ -6,6 +6,8 @@ import { EditBot } from '../Components/BotModals/EditBot.jsx'
 import { RemoveBot } from '../Components/BotModals/RemoveBotModal.jsx'
 import { Invites } from '../Components/BotModals/Invites.jsx'
 
+import { ToastElement, activateToast } from '../Components/Toast';
+
 import * as Manager from "../Manager"
 
 const storage = window.localStorage
@@ -17,8 +19,10 @@ const BotPage = () => {
     const [isOnline, setIsOnline] = useState(Boolean);
     const [terminal, setTerminal] = useState([]);
 
+    const [stats, setStats] = useState([0, "s"]);
+
     let id = useParams().id
-    
+
 
     useEffect(() => {
         JSON.parse(storage.getItem('bots')).forEach(function (item, index) {
@@ -53,7 +57,9 @@ const BotPage = () => {
                 </div> : <div onClick={() => {
                     Manager.startBot(botInfo.name, terminal, setTerminal).then((response, err) => {
                         setIsOnline(response)
-                        Manager.connectBus(botInfo.name, terminal, setTerminal)
+                        Manager.connectBus(botInfo.name, terminal, setTerminal, setStats)
+                    }).catch(() => {
+                        activateToast("NotFound")
                     })
                 }} className="btn text-shadow-white bg-success hover:bg-success/75">
                     Start
@@ -87,15 +93,33 @@ const BotPage = () => {
             </div>
 
             {isOnline &&
-                <div id="terminal" className="transition-all bg-black rounded-lg mockup-code max-h-max overflow-y-auto">
+                <div className="flex flex-row max-h-[calc(100vh_-_18.5rem)] space-x-3">
+                    <div id="terminal" className="transition-all bg-black grow rounded-lg mockup-code max-h-max overflow-x-auto overflow-y-auto">
+                        {terminal.map((data, index) => (
+                            <pre key={index} data-prefix={index + 1}>
+                                <code>{data}</code>
+                            </pre>
+                        ))}
+                    </div>
 
-                    {terminal.map((data, index) => (
-                        <pre key={index} data-prefix={index + 1}>
-                            <code>{data}</code>
-                        </pre>
-                    ))}
+                    <div className="flex flex-col w-64">
+                        <div className="stats rounded-lg stats-vertical bg-black">
+                            <div className="stat">
+                                <div className="stat-title">CPU Usage</div>
+                                <div className="stat-value text-2xl"><code>{stats.cpu}%</code></div>
+                                <div className="stat-desc"><code>Uptime: {stats.uptime}</code></div>
+                            </div>
+                            <div className="stat">
+                                <div className="stat-title">Memory</div>
+                                <div className="stat-value text-2xl"><code>{stats.mem} MB</code></div>
+                                <div className="stat-desc"><code>Uptime: {stats.uptime}</code></div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             }
+
+            <ToastElement content={`Bot Not Found at "${botInfo.path}", Create index.js or edit bot directory`} type={"error"} toastId={"NotFound"}></ToastElement>
         </div >
     );
 };
