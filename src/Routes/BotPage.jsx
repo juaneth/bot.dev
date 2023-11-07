@@ -1,5 +1,5 @@
 import { useParams, Link } from "react-router-dom";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import * as Bots from "../Store";
 
 import { EditBot } from '../Components/BotModals/EditBot.jsx'
@@ -13,6 +13,9 @@ import * as Manager from "../Manager"
 const storage = window.localStorage
 
 const BotPage = () => {
+    const { exec } = require('child_process');
+    const openExplorer = require('open-file-explorer');
+
     const [bots, setBots] = useState(JSON.parse(localStorage.getItem('bots')));
 
     const [botInfo, setBotInfo] = useState(Array);
@@ -20,6 +23,8 @@ const BotPage = () => {
     const [terminal, setTerminal] = useState([]);
 
     const [stats, setStats] = useState([0, "s"]);
+
+    const commandRef = useRef(String);
 
     let id = useParams().id
 
@@ -76,9 +81,6 @@ const BotPage = () => {
 
                 <div data-tip={`Command: ${storage.getItem('defaultCodeEditor')} <bot folder>`} className="tooltip">
                     <div onClick={() => {
-                        const { exec } = require('child_process');
-                        const openExplorer = require('open-file-explorer');
-
                         exec(`${storage.getItem('defaultCodeEditor')} ${botInfo.path}`, (err, stdout, stderr) => {
                             if (err) {
                                 openExplorer(`${botInfo.path}`, err => {
@@ -102,7 +104,7 @@ const BotPage = () => {
             </div>
 
             {isOnline &&
-                <div className="flex flex-row max-h-[calc(100vh_-_18.5rem)] space-x-3">
+                <div className="flex flex-row h-[calc(100vh_-_18.5rem)] space-x-3">
                     <div className="flex flex-col grow h-full max-h-max space-y-3">
                         <div id="terminal" className="transition-all bg-black grow rounded-lg mockup-code max-h-max overflow-x-auto overflow-y-auto">
                             {terminal.map((data, index) => (
@@ -112,9 +114,17 @@ const BotPage = () => {
                             ))}
                         </div>
 
-                        <div className="grow flex flex-row space-x-3">
-                            <code className="w-full"><input className="input w-full bg-black rounded-lg" placeholder="npm i [package name], etc." type="text" /></code>
-                            <div className="btn bg-base-100 text-shadow-white hover:bg-white/5">Run</div>
+                        <div className="flex flex-row space-x-3">
+                            <code className="w-full"><input className="input w-full bg-black rounded-lg" ref={commandRef} placeholder="Terminal" type="text" /></code>
+                            <div onClick={() => {
+                                let command = commandRef.current.value
+
+                                exec(`${command}`, {
+                                    cwd: botInfo.path
+                                }, function (error, stdout, stderr) {
+                                    setTerminal(prev => [...prev, stdout + stderr])
+                                });
+                            }} className="btn bg-base-100 text-shadow-white hover:bg-white/5">Run</div>
                         </div>
 
 
