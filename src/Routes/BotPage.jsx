@@ -27,6 +27,13 @@ const BotPage = () => {
     useEffect(() => {
         JSON.parse(storage.getItem('bots')).forEach(function (item, index) {
             if (item.name == id) {
+                Manager.botOnline(item.name).then((status) => {
+                    setIsOnline(status)
+                    Manager.connectBus(item.name, terminal, setTerminal, setStats)
+                }).catch(() => {
+                    activateToast("NotFound")
+                })
+
                 setBotInfo(item)
             }
         });

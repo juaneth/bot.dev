@@ -8,15 +8,41 @@ let currentLog = []
 
 let statsInterval;
 
-export const botOnline = (botName, terminal, setTerminal) => {
+export const botOnline = (botName) => {
     return new Promise(function(resolve, reject) {
-        pm2.describe(botName, ((err, info) => {
-            if (info.length > 0) {
-                if (info[0].pm2_env.status == "online") {
-                    resolve(false)
+        let bots = JSON.parse(window.localStorage.getItem('bots'))
+
+        let obj = bots[bots.findIndex((o) => o.name === botName)]
+
+        if (obj == undefined) {
+            reject("Bot Not Found")
+        }
+
+        if (fs.existsSync(`${obj.path}/index.js` || fs.existsSync(`${obj.path}/main.js`))) {
+            pm2.connect(function(err) {
+                if (err) {
+                    reject(err)
                 }
-            }
-        }))
+
+                pm2.describe(obj.name, (err, data) => {
+                    if (err) {
+                        reject(err)
+                    }
+
+                    let status = data[0].pm2_env.status
+
+                    if (status == "online") {
+                        resolve(true)
+                    } else {
+                        if (status == "stopped") {
+                            resolve(false)
+                        }
+                    }
+                })
+            })
+        } else {
+            reject("Bot Not Found")
+        }
     });
 }
 
@@ -51,10 +77,6 @@ export const startBot = (botName, terminal, setTerminal) => {
             reject(`Bot not found at ${obj.path}`)
         }
     });
-
-
-
-
 }
 
 export const connectBus = (botName, terminal, setTerminal, setStats) => {
@@ -65,15 +87,22 @@ export const connectBus = (botName, terminal, setTerminal, setStats) => {
 
         pm2.connect(function(err) {
             if (err) {
-                console.error(err)
+                reject(err)
             }
 
             setTerminal(currentLog)
 
             pm2.launchBus(function(err, pm2_bus) {
                 if (err) {
-                    console.error(err)
+                    reject(err)
                 }
+
+                currentLog = ([
+                    ...currentLog,
+                    "[X] bot.dev Connected! [X]"
+                ])
+
+                setTerminal(currentLog)
 
                 pm2_bus.on('log:out', function(packet) {
                     if (packet.process.name == obj.name) {
