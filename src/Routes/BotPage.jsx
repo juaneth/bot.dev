@@ -115,7 +115,7 @@ const BotPage = () => {
                         </div>
 
                         <div className="flex flex-row space-x-3">
-                            <code className="w-full"><input className="input w-full bg-black rounded-lg" ref={commandRef} placeholder="Terminal" type="text" /></code>
+                            <code className="w-full"><input className="input w-full bg-black rounded-lg" ref={commandRef} placeholder="Command Line..." type="text" /></code>
                             <div onClick={() => {
                                 let command = commandRef.current.value
 
