@@ -16,7 +16,8 @@
 
 ## Screenshots
 <img src="https://github.com/juaneth/bot.dev/assets/68202118/698bf626-9a0c-4dbc-bc05-824f1498435a" alt="drawing" width="40%"/>
-<img src="https://github.com/juaneth/bot.dev/assets/68202118/feedb8b5-3488-492d-a456-ee30b311c27e" alt="drawing" width="40%"/>
+<img src="https://github.com/juaneth/bot.dev/assets/68202118/6fd9a51c-970d-4cb6-815b-994620bc5e29" alt="drawing" width="40%"/>
+
 
 
 
