@@ -27,6 +27,8 @@ const BotPage = () => {
     useEffect(() => {
         JSON.parse(storage.getItem('bots')).forEach(function (item, index) {
             if (item.name == id) {
+                Manager.disconnectBus()
+
                 Manager.botOnline(item.name).then((status) => {
                     setIsOnline(status)
                     Manager.connectBus(item.name, terminal, setTerminal, setStats)
@@ -101,12 +103,21 @@ const BotPage = () => {
 
             {isOnline &&
                 <div className="flex flex-row max-h-[calc(100vh_-_18.5rem)] space-x-3">
-                    <div id="terminal" className="transition-all bg-black grow rounded-lg mockup-code max-h-max overflow-x-auto overflow-y-auto">
-                        {terminal.map((data, index) => (
-                            <pre key={index} data-prefix={index + 1}>
-                                <code>{data}</code>
-                            </pre>
-                        ))}
+                    <div className="flex flex-col grow h-full max-h-max space-y-3">
+                        <div id="terminal" className="transition-all bg-black grow rounded-lg mockup-code max-h-max overflow-x-auto overflow-y-auto">
+                            {terminal.map((data, index) => (
+                                <pre key={index} data-prefix={index + 1}>
+                                    <code>{data}</code>
+                                </pre>
+                            ))}
+                        </div>
+
+                        <div className="grow flex flex-row space-x-3">
+                            <code className="w-full"><input className="input w-full bg-black rounded-lg" placeholder="npm i [package name], etc." type="text" /></code>
+                            <div className="btn bg-base-100 text-shadow-white hover:bg-white/5">Run</div>
+                        </div>
+
+
                     </div>
 
                     <div className="flex flex-col w-64">

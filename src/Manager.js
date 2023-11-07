@@ -79,6 +79,16 @@ export const startBot = (botName, terminal, setTerminal) => {
     });
 }
 
+export const disconnectBus = () => {
+    return new Promise(function(resolve, reject) {
+        currentLog = []
+
+        pm2.disconnect()
+
+        resolve(true)
+    });
+}
+
 export const connectBus = (botName, terminal, setTerminal, setStats) => {
     return new Promise(function(resolve, reject) {
         let bots = JSON.parse(window.localStorage.getItem('bots'))
@@ -97,10 +107,12 @@ export const connectBus = (botName, terminal, setTerminal, setStats) => {
                     reject(err)
                 }
 
-                currentLog = ([
-                    ...currentLog,
-                    "[X] bot.dev Connected! [X]"
-                ])
+                if (currentLog.length == 0) {
+                    currentLog = ([
+                        ...currentLog,
+                        "[X] bot.dev Terminal Connected! [X]"
+                    ])
+                }
 
                 setTerminal(currentLog)
 
@@ -131,16 +143,16 @@ export const connectBus = (botName, terminal, setTerminal, setStats) => {
                     pm2.describe(obj.name, (err, data) => {
                         let uptime = [Math.floor(((Date.now() - data[0].pm2_env.pm_uptime) / 1000)), "s"]
 
-                        if (uptime[0] > 60) {
+                        if (uptime[0] >= 60) {
                             uptime = [Math.floor(uptime[0] / 60), "m"]
 
-                            if (uptime[0] > 24) {
+                            if (uptime[0] >= 60) {
                                 uptime = [Math.floor(uptime[0] / 60), "hrs"]
-                            }
-                        }
 
-                        if (data[0].monit.cpu = 0) {
-                            data[0].monit.cpu = "0<"
+                                if (uptime[0] >= 24) {
+                                    uptime = [Math.floor(uptime[0] / 24), " days"]
+                                }
+                            }
                         }
 
                         let monit = {
@@ -164,21 +176,16 @@ export const stopBot = (botName) => {
         let bots = JSON.parse(window.localStorage.getItem('bots'))
 
         let obj = bots[bots.findIndex((o) => o.name === botName)]
-
-        pm2.connect(function(err, apps) {
+        pm2.stop(obj.name, (err, apps) => {
             console.log(err, apps)
 
-            pm2.stop(obj.name, (err, apps) => {
-                console.log(err, apps)
+            currentLog = []
 
-                currentLog = []
+            clearInterval(statsInterval)
 
-                clearInterval(statsInterval)
+            resolve(false)
 
-                resolve(false)
-            })
+            pm2.disconnect()
         })
-
-        pm2.disconnect()
     });
 }
